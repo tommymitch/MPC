@@ -1,0 +1,62 @@
+<html>
+<head>
+    <style>
+    button {
+        /* buttons blue with large white text */
+        background: lightblue;
+        color: white;
+        font-size: 2em;
+    }
+    
+    .centred {
+        /* a css class definition to centre an item */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    
+    .rightTop {
+        /* a css class definition to place an item
+           slightly right of a parent item's centre
+           and also near the top of the parent item */
+        position: fixed;
+        top: 15%;
+        left: 80%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    
+    </style>
+    
+    <script src="Tone.js"></script>
+</head>
+<body>
+    <div class="centred">
+        <img id="hand" src="hand.png"></img><br>
+        <span class="rightTop">
+            <button id="button">click me</button>
+        </span>
+    </div>
+
+    <script>
+    var hand = document.getElementById("hand");
+    var button = document.getElementById("button");
+    hand.onclick = hand.ontouchstart = mouseActions;
+    button.onclick = button.ontouchstart = mouseActions;
+    
+    var slap = new Tone.Player({
+       "url" : "slap.mp3",
+       "retrigger" : true
+    });
+    
+    slap.connect(Tone.Master);
+
+    function mouseActions(event) {
+        slap.start();
+    }
+    </script>
+
+</body>
+</html>
